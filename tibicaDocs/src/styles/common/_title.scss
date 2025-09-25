@@ -1,0 +1,20 @@
+@import '../mixins/titles';
+@import '../variables/index';
+
+.title {
+    &.small {
+        @include title(small);
+    }
+
+    &.medium {
+        @include title(medium);
+    }
+
+    &.large {
+        @include title(large);
+    }
+
+    &.extra-large {
+        @include title(extra-large);
+    }
+}

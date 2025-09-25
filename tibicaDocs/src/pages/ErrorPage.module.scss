@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    height: 100vh;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    max-width: 450px;
+}
+
+.description {
+    color: var(--gray600);
+    font-weight: 400;
+    line-height: 1.7;
+}

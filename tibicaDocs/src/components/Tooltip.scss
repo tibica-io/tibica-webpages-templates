@@ -1,0 +1,113 @@
+/* Mixins */
+%arrow-common {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+}
+
+%top-center {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%bottom-center {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%center-left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%center-right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* [END] Mixins */
+
+
+.tooltip {
+  --gray900: #091A3C;
+  position: relative;
+  display: inline-block;
+
+  &__cursor--point{
+    cursor: pointer;
+  }
+
+  &__custom__content {
+    position: absolute;
+    z-index: 1;
+    padding: 10px;
+    background: var(--gray900);
+    color: #FFFFFF;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+
+    &--visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &--top {
+      @extend %top-center;
+      margin-bottom: 10px;
+
+      &:after {
+        @extend %arrow-common;
+        @extend %bottom-center;
+        border-color: var(--gray900) transparent transparent transparent;
+      }
+    }
+
+    &--bottom {
+      @extend %bottom-center;
+      margin-top: 10px;
+
+      &:after {
+        @extend %arrow-common;
+        @extend %top-center;
+        border-color: transparent transparent var(--gray900) transparent;
+      }
+    }
+
+    &--left {
+      @extend %center-left;
+      margin-right: 10px;
+
+      &:after {
+        @extend %arrow-common;
+        @extend %center-right;
+        border-color: transparent transparent transparent var(--gray900);
+      }
+    }
+
+    &--right {
+      @extend %center-right;
+      margin-left: 10px;
+
+      &:after {
+        @extend %arrow-common;
+        @extend %center-left;
+        border-color: transparent var(--gray900) transparent transparent;
+      }
+    }
+  }
+}
+
+
+.reset-width{
+  width: unset;
+  min-width: none;
+}

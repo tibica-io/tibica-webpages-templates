@@ -1,0 +1,9 @@
+@import '../mixins/spacing';
+
+$directions: top, bottom, left, right;
+$start: 0;
+$end: 32;
+
+@include generate-spacing-classes(margin, $directions, $start, $end);
+@include generate-spacing-classes(padding, $directions, $start, $end);
+@include generate-spacing-classes(padding, null, $start, $end);

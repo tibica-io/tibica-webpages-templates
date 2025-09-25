@@ -1,0 +1,430 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #f9fafb;
+	font-family: 'Inter', sans-serif;
+    color: #091a3c;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: 2.5rem;
+	line-height: 2.81rem;
+	text-align: center;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("./fonts/Inter-Regular.woff2?v=3.19") format("woff2"),
+    url("./fonts/Inter-Regular.woff?v=3.19") format("woff");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("./fonts/Inter-Medium.woff2?v=3.19") format("woff2"),
+    url("./fonts/Inter-Medium.woff?v=3.19") format("woff");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("./fonts/Inter-Bold.woff2?v=3.19") format("woff2"),
+    url("./fonts/Inter-Bold.woff?v=3.19") format("woff");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("./fonts/Inter-ExtraBold.woff2?v=3.19") format("woff2"),
+    url("./fonts/Inter-ExtraBold.woff?v=3.19") format("woff");
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.content {
+	display: block;
+	margin: 2rem auto 2rem auto;
+	width: 100%;
+	max-width: 1280px;
+}
+
+.header {
+    margin: 0;
+    font-size: 4rem;
+    line-height: 1.3;
+    letter-spacing: -0.02rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.subheader {
+    margin: 1.5rem 0 0 0;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #667085;
+    text-align: center;
+}
+
+.generator {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: auto 648px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.inputs-wrapper-horizontal, .inputs-wrapper-vertical {
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+}
+
+.inputs-wrapper-vertical {
+	flex-direction: column;
+}
+
+.input-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+	font-weight: 500;
+	line-height: 1.7rem;
+}
+
+.select {
+    position: relative;
+    width: 100%;
+}
+
+.select-control {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.7;
+    background-color: #fff;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    cursor: pointer;
+    user-select: none;
+}
+
+.select-value {
+    padding: 8px 12px;
+    overflow: hidden;
+}
+
+.select-indicator-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.select-reset-button {
+    outline: none;
+    background: none;
+    cursor: pointer;
+    border: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    color: #cccccc;
+}
+
+.select-reset-button:hover {
+    color: #999999;
+}
+
+.select-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 100%;
+    border-left: 1px solid #D0D5DD;
+    color: #cccccc;
+}
+
+.select-indicator:hover {
+    color: #999999;
+}
+
+.open .select-indicator {
+    color: #091a3c;
+}
+
+.select-separator {
+    height: 100%;
+    background: #D0D5DD;
+    width: 1px;
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #F2F4F7;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+    z-index: 2;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 8px 0;
+    padding: 4px 0;
+}
+
+.select-option {
+    padding: 8px 12px;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    cursor: pointer;
+    width: 100%;
+    user-select: none;
+}
+
+.select-option:hover, .select-option.selected {
+    background: #F9FAFB;
+}
+
+.color-option {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.color-preview {
+    width: 30px;
+    align-self: stretch;
+    border-radius: 8px;
+}
+
+.input {
+	width: 100%;
+	font-size: 16px;
+	line-height: 1.7rem;
+	border: 1px solid #eeede8;
+	border-radius: 8px;
+	padding: 8px 12px;
+	box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+	background: #fff;
+    color: #091a3c;
+	outline: none;
+	font-family: 'Inter', sans-serif;
+}
+
+.color-picker {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 50px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.color-picker::-webkit-color-swatch {
+	border-radius: 4px;
+	border: none;
+}
+
+.color-picker::-moz-color-swatch {
+	border-radius: 4px;
+	border: none;
+}
+
+.preview {
+    position: relative;
+    margin-top: -12px;
+	padding: 0 1rem 0 2rem;
+    /* position: fixed; */
+}
+
+.signature-code {
+    width: 600px !important;
+	font-family: monospace;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.disclaimer {
+    width: 600px;
+}
+
+.disclaimer-text {
+    margin-top: 0;
+    resize: none;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.config-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.copy-button {
+	display: block;
+	color: #ffffff;
+    background: #F48757;
+    border-color: #F48757;
+	padding: 10px 18px;
+    line-height: 1.5;
+	text-transform: uppercase;
+	box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+	font-weight: 700;
+	border-radius: 8px;
+	border: 1px solid transparent;
+	outline: none;
+	cursor: pointer;
+	font-family: 'Inter', sans-serif;
+    width: fit-content;
+}
+
+.copy-button:hover {
+	background: #F58D5F;
+    border-color: #F58D5F;
+}
+
+.copy-button:active {
+	background: #E46A34;
+    border-color: #E46A34;;
+}
+
+.notifications {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+}
+
+.notifications :where(.toast, .column) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.notifications .toast {
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    animation: show_toast 0.3s ease forwards;
+    border: 1px solid #A6C6A1;
+    border-radius: 12px;
+    padding: 16px;
+    background: #F5F9F4;
+    color: #55804E;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 170%;
+}
+
+.notifications .toast button {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    width: 20px;
+    height: 21px;
+    color: #80AD79;
+    cursor: pointer;
+}
+
+.notifications .toast button:hover {
+    color: #55804E;
+}
+
+@keyframes show_toast {
+    0% {
+        transform: translateX(100%);
+    }
+
+    40% {
+        transform: translateX(-5%);
+    }
+
+    80% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+.notifications .toast.hide {
+    animation: hide_toast 0.3s ease forwards;
+}
+
+@keyframes hide_toast {
+    0% {
+        transform: translateX(-10px);
+    }
+
+    40% {
+        transform: translateX(0%);
+    }
+
+    80% {
+        transform: translateX(-5%);
+    }
+
+    100% {
+        transform: translateX(calc(100% + 20px));
+    }
+}
+
+.toast::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        width: 0%;
+    }
+}

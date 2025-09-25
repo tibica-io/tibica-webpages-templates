@@ -1,0 +1,7 @@
+// Function for converting a px based font-size to em.
+@function em($size) {
+  //@return #{$size / 16}em;
+  $remSize: calc($size / 16);
+  //Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}em;
+}

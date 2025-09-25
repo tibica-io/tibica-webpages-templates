@@ -1,0 +1,19 @@
+.btn-container{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    z-index: 1;
+}
+
+.copy-btn{
+    opacity: 0;
+
+    transition: 0.4s;
+    color:rgba(25,25,28);
+}
+
+.visible{
+    opacity: 0.7;
+    transition: 0.4s;
+}

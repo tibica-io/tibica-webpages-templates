@@ -1,0 +1,13 @@
+@import '../styles/variables';
+
+.ant-anchor{
+    .ant-anchor-ink{
+        background-color: $primary700 !important;
+    }
+}
+
+
+
+.ant-anchor-link-title-active{
+    color: $primary700 !important;
+}

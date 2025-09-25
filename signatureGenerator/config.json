@@ -1,0 +1,21 @@
+{
+    "logo": "generic-logo.png",
+    "avatar": "frog.png",
+    "name": "Sirena Mystical Frog",
+    "position": "Customer Serenade Specialist",
+    "socialsLinks": {
+        "facebook": "https://www.facebook.com",
+        "linkedin": "https://www.linkedin.com",
+        "twitter": "https://www.x.com",
+        "github": "https://www.github.com",
+        "youtube": ""
+    },
+    "contactInformation": {
+        "phone": "+1 234 567 890",
+        "email": "serena@example.com",
+        "website": "mywebsite.com"
+    },
+    "legalDisclaimer": "",
+    "backgroundColor": "#091A3C",
+    "textColor": "#ffffff"
+}

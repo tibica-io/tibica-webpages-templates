@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="./index.css" />
+	<link rel="shortcut icon" href="assets/favicon.svg" type="image/svg+xml">
+	<script src="./main.js" defer></script>
+	<title>Tibica email signature generator</title>
+	<style>
+		.wrapper-init {
+			text-align: center;
+		}
+	
+		.wrapper-init.center-init {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	
+		.loader-init {
+			width: 64px;
+			height: 64px;
+			border-radius: 50%;
+			position: relative;
+			margin: 0 auto;
+		}
+	
+		.loader-init:before {
+			z-index: 100;
+			animation: spin 1s infinite;
+		}
+	
+		.loader-init:before,
+		.loader-init:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 50%;
+			border: 8px solid transparent;
+			border-top-color: #80ad79;
+		}
+	
+		.loader-init:after {
+			border: 8px solid #f2f4f7;
+		}
+	
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+	
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper-init center-init" id="loader">
+		<div class="loader-init"></div>
+	</div>
+	<ul class="notifications"></ul>
+	<div class="main">
+		<div class="content" id="content" style="display: none;">
+			<h1 class="header">Tibica email signature generator</h1>
+			<h2 class="subheader">Your Signature Says It All – Design with Ease.</h2>
+			<div class="generator">
+				<div class="form">
+					<div class="input-wrapper">
+						<label class="label" for="logo-select">
+							Select logo
+						</label>
+						<div class="select" id="logo-select" data-placeholder="Select logo" default-value="" data-onchange="changeLogo" data-onremove="deleteLogo">
+							<div class="select-control">
+								<div class="select-value">
+									Loading ...
+								</div>
+								<div class="select-indicator-wrapper">
+									<button class="select-reset-button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</button>
+									<div class="select-indicator">
+										<svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg" fill="currentColor"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg>
+									</div>
+								</div>
+							</div>
+							<div class="select-options">
+							</div>
+						</div>
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="avatar-select">
+							Select avatar
+						</label>
+						<div class="select" id="avatar-select" data-placeholder="Select avatar" default-value="" data-onchange="changeAvatar" data-onremove="deleteAvatar">
+							<div class="select-control">
+								<div class="select-value">
+									Loading ...
+								</div>
+								<div class="select-indicator-wrapper">
+									<button class="select-reset-button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</button>
+									<div class="select-indicator">
+										<svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg" fill="currentColor"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg>
+									</div>
+								</div>
+							</div>
+							<div class="select-options">
+							</div>
+						</div>
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="name-input">Name</label>
+						<input class="input" type="text" id="name-input" placeholder="Name" value="Sirena Mystical Frog" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="position-input">Position</label>
+						<input class="input" type="text" id="position-input" placeholder="Name" value="Customer Serenade Specialist" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="facebook-input">
+							Facebook profile URL
+						</label>
+						<input class="input" type="text" id="facebook-input" placeholder="Facebook profile URL" value="https://www.facebook.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="linkedin-input">
+							LinkedIn profile URL
+						</label>
+						<input class="input" type="text" id="linkedin-input" placeholder="LinkedIn profile URL" value="https://www.linkedin.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="twitter-input">
+							Twitter (X) profile URL
+						</label>
+						<input class="input" type="text" id="twitter-input" placeholder="Twitter (X) profile URL" value="https://www.x.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="github-input">
+							Github profile URL
+						</label>
+						<input class="input" type="text" id="github-input" placeholder="Github profile URL" value="https://www.github.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="youtube-input">
+							Youtube profile URL
+						</label>
+						<input class="input" type="text" id="youtube-input" placeholder="Youtube profile URL" value="https://www.youtube.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="phone-input">
+							Phone number
+						</label>
+						<input class="input" type="text" id="phone-input" placeholder="Phone number" value="+12 345 678 90" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="email-input">Email</label>
+						<input class="input" type="text" id="email-input" placeholder="Email" value="serena@example.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="website-input">
+							Website
+						</label>
+						<input class="input" type="text" id="website-input" placeholder="https://mywebsite.com" value="https://mywebsite.com" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="legal-disclaimer-textarea">
+							Legal disclaimer
+						</label>
+						<textarea class="input disclaimer-text" id="legal-disclaimer-textarea" rows="3"></textarea>
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="background-color">Background color</label>
+						<input class="input color-picker" type="color" id="background-color" value="#091a3c" />
+					</div>
+					<div class="input-wrapper">
+						<label class="label" for="text-color-select">Text color</label>
+						<div class="select" id="text-color-select" data-onsetoptions="setColors" data-onchange="changeTextColor">
+							<div class="select-control">
+								<div class="select-value">
+									<div class="color-option" data-value="#ffffff">
+										<div class="color-preview" style="background-color: #ffffff;"></div>
+										White
+									</div>
+								</div>
+								<div class="select-indicator-wrapper">
+									<div class="select-indicator">
+										<svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="css-8mmkcg" fill="currentColor"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg>
+									</div>
+								</div>
+							</div>
+							<div class="select-options">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="preview">
+						<div id="signature" dir="ltr">
+							<table style="direction:ltr;border-collapse:collapse">
+								<tr>
+									<td style="font-size:0;height:12px;line-height:0"></td>
+								</tr>
+								<tr id="content-row">
+									<td>
+										<table style="width:600px;background-color:#091a3c;padding:25px 38px 25px 38px" cellpadding="0" cellspacing="0" border="0" width="100%" id="main-table">
+											<tr>
+												<td>
+													<table style="border-collapse:collapse" cellpadding="0" cellspacing="0" width="100%">
+														<tr>
+															<td style="padding:0" id="main-container">
+																<table id="logo-table" style="border-collapse:collapse;width:100%" cellpadding="0" cellspacing="0" width="100%">
+																	<tr>
+																		<td style="padding:.01px 14px .01px 1px;vertical-align:top" align="left" valign="top">
+																			<img id="logo" alt="logo" border="0" height="22" src="/images/logos/mybusiness.png" style="vertical-align:middle;height:22px;border:0;display:block">
+																		</td>
+																	</tr>
+																</table>
+																<table style="border-collapse:collapse;width:100%" cellpadding="0" cellspacing="0" border="0">
+																	<tr id="main-row">
+																		<td id="avatar-cell" style="padding:20px 0 0 0;vertical-align:top;width:66px">
+																			<img id="avatar" alt="photo" border="0" height="66" src="images/avatars/frog.png" style="width:66px;vertical-align:middle;border-radius:50%;height:66px;border:0;display:block" width="66">
+																		</td>
+																		<td id="name-cell" style="padding:20px 0 0 15px;vertical-align:top">
+																			<p id="name" style="font-family:Helvetica;font-size:18px;line-height:100%;font-weight:700;color:#ffffff;margin:0">Sirena Mystical Frog</p>
+																			<p id="position" style="font-family:Helvetica;font-size:12px;line-height:100%;font-weight:400;color:#ffffff;margin:8px 0 0 0">Customer Serenade Specialist</p>
+																			<table style="border-collapse:collapse" cellpadding="0" cellspacing="0" border="0">
+																				<tr id="social-links-row">
+																				</tr>
+																			</table>
+																		</td>
+																		<td id="contact-cell" style="padding:20px 0 0 15px;vertical-align:top">
+																			<table style="border-collapse:collapse" cellpadding="0" cellspacing="0" border="0" id="contacts-links-column">
+																			</table>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="buttons">
+							<button class="copy-button" id="open-signature">Open signature in new window</button>
+							<textarea class="signature-code input" id="signature-code" rows="3" readonly></textarea>
+							<button class="copy-button" id="copy-button">Copy HTML</button>
+							<p>/config.json</p>
+							<textarea class="signature-code input" id="config-code" rows="3" readonly></textarea>
+							<div class="config-buttons">
+								<button class="copy-button" id="copy-config">Copy config</button>
+								<button class="copy-button" id="download-config">Download config</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>

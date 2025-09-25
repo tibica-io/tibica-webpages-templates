@@ -1,0 +1,26 @@
+@mixin title($size) {
+    @if $size == small {
+        margin-top: 0;
+        font-size: 16px;
+        font-weight: 600;
+    } @else if $size == medium {
+        margin-top: 0;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.5;
+    } @else if $size == large {
+        margin-top: 0;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.4;
+    } @else if $size == extra-large {
+        margin-top: 0;
+        font-size: 48px;
+        font-weight: bold;
+    } @else {
+        // Default size if none specified
+        margin-top: 0;
+        font-size: 24px;
+        font-weight: bold;
+    }
+}

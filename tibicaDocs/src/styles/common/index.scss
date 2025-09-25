@@ -1,0 +1,39 @@
+@use '../variables/index' as *;
+@import "reset";
+@import "normalize";
+@import "fonts";
+@import "title";
+@import "animations";
+@import "spacing";
+
+
+// Global styles
+body, html {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: $gray50;
+    color: $gray900;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+p {
+    line-height: 1.7;
+}
+
+svg {
+    outline: none;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}

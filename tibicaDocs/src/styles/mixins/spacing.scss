@@ -1,0 +1,15 @@
+@mixin generate-spacing-classes($property, $directions, $start, $end) {
+    @for $i from $start through $end {
+        @if $directions == null {
+            .#{str-slice($property, 1, 1)}#{$i} {
+                #{$property}: #{$i}px !important;
+            }
+        } @else {
+            @each $direction in $directions {
+                .#{str-slice($property, 1, 1)}#{str-slice($direction, 1, 1)}#{$i} {
+                    #{$property}-#{$direction}: #{$i}px !important;
+                }
+            }
+        }
+    }
+}
