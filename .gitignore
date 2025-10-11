@@ -27,7 +27,6 @@ out/
 _site/
 .jekyll-cache/
 .jekyll-metadata
-public/
 
 # Environment variables
 .env
