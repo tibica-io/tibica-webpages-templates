@@ -65,47 +65,47 @@ Your selected template will automatically generate a repository in t.Git with al
 ### Frontend Frameworks
 
 #### React Templates
-- **`react/`** - React 18 with Create React App and traditional build setup
-- **`reactVite/`** - React 18 with Vite for faster development and modern build tools
-- **`reactVitets/`** - React 18 with Vite and TypeScript for type-safe development
-- **`reactts/`** - React 18 with TypeScript and traditional Create React App
+- **`react-cra/`** - React 18 with Create React App and traditional build setup
+- **`react-vite/`** - React 18 with Vite for faster development and modern build tools
+- **`react-vite-ts/`** - React 18 with Vite and TypeScript for type-safe development
+- **`react-cra-ts/`** - React 18 with TypeScript and traditional Create React App
 
 #### Vue Templates
-- **`vuejs/`** - Vue 3 with Vue CLI for component-based development
-- **`vueVite/`** - Vue 3 with Vite for enhanced performance and DX
-- **`vueVitets/`** - Vue 3 with Vite and TypeScript for scalable applications
-- **`vuets/`** - Vue 3 with TypeScript and traditional tooling
+- **`vue/`** - Vue 3 with Vue CLI for component-based development
+- **`vue-vite/`** - Vue 3 with Vite for enhanced performance and DX
+- **`vue-vite-ts/`** - Vue 3 with Vite and TypeScript for scalable applications
+- **`vue-ts/`** - Vue 3 with TypeScript and traditional tooling
 
 #### Angular Templates
 - **`angular/`** - Angular 19 with Angular CLI, RxJS, and modern Angular features
 
 #### Svelte Templates
-- **`sveltejs/`** - Svelte 4 with Webpack for component-based reactive development
-- **`svelteVite/`** - Svelte 4 with Vite for optimized build performance
-- **`svelteVitets/`** - Svelte 4 with Vite and TypeScript
-- **`sveltets/`** - Svelte 4 with TypeScript support
+- **`svelte/`** - Svelte 4 with Webpack for component-based reactive development
+- **`svelte-vite/`** - Svelte 4 with Vite for optimized build performance
+- **`svelte-vite-ts/`** - Svelte 4 with Vite and TypeScript
+- **`svelte-ts/`** - Svelte 4 with TypeScript support
 
 #### Preact Templates
-- **`preactVite/`** - Preact with Vite for lightweight React-compatible development
-- **`preactVitets/`** - Preact with Vite and TypeScript for minimal bundle size
+- **`preact-vite/`** - Preact with Vite for lightweight React-compatible development
+- **`preact-vite-ts/`** - Preact with Vite and TypeScript for minimal bundle size
 
 ### Static Site Generators
 
-- **`astroPortfolio/`** - Astro 4 template optimized for portfolio websites
-- **`astroBlog/`** - Astro 4 template designed for blogs with MDX, RSS, and sitemap support
-- **`eleventy/`** - Eleventy (11ty) base blog template with navigation, syntax highlighting, and RSS
-- **`vitePress/`** - VitePress for documentation sites with markdown-based content
+- **`astro-portfolio/`** - Astro 4 template optimized for portfolio websites
+- **`astro-blog/`** - Astro 4 template designed for blogs with MDX, RSS, and sitemap support
+- **`eleventy-blog/`** - Eleventy (11ty) base blog template with navigation, syntax highlighting, and RSS
+- **`vitepress-docs/`** - VitePress for documentation sites with markdown-based content
 
 ### Vanilla & Static Templates
 
-- **`vanillaVite/`** - Pure HTML/CSS/JS with Vite for modern vanilla development
-- **`vanillaVitets/`** - Vanilla JavaScript with TypeScript and Vite
-- **`static/`** - Pure HTML/CSS template for simple static websites
-- **`signatureGenerator/`** - Interactive HTML/CSS/JS template for email signature generation
+- **`vanilla-vite/`** - Pure HTML/CSS/JS with Vite for modern vanilla development
+- **`vanilla-vite-ts/`** - Vanilla JavaScript with TypeScript and Vite
+- **`html-static/`** - Pure HTML/CSS template for simple static websites
+- **`email-signature-generator/`** - Interactive HTML/CSS/JS template for email signature generation
 
 ### Documentation Templates
 
-- **`tibicaDocs/`** - Advanced React + TypeScript documentation template with Ant Design, Redux Toolkit, and markdown support
+- **`react-docs-advanced/`** - Advanced React + TypeScript documentation template with Ant Design, Redux Toolkit, and markdown support
 
 ## 🛠 Technology Stack Coverage
 
