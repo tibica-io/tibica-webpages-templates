@@ -1,5 +1,7 @@
 # Tibica Website Templates
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This project contains 24 starter website templates for **Tibica t.Webpages (t.Site)** - a comprehensive collection of modern web development templates covering various frameworks, build tools, and use cases.
 
 ## 🌐 About Tibica
@@ -130,6 +132,12 @@ This project is developed by the **Perfsys team** - [https://perfsys.com](https:
 - **Slack Community**: [Join Tibica Community](https://join.slack.com/t/tibica-community/shared_invite/zt-3djc8oep1-Ghsgkt3bAJJ6A4Kd7M6HPg)
 - **Support Email**: [help@tibica.io](mailto:help@tibica.io)
 - **Official Contact**: [company@tibica.io](mailto:company@tibica.io)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+All templates are freely available for personal and commercial use. Attribution is appreciated but not required.
 
 ---
 
