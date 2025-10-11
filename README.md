@@ -120,9 +120,16 @@ Your selected template will automatically generate a repository in t.Git with al
 
 This project is developed by the **Perfsys team** - [https://perfsys.com](https://perfsys.com)
 
-## 📖 Documentation
+## 📖 Documentation & Support
 
-For detailed usage instructions and template documentation, visit [https://docs.tibica.io/getting-started/step-2-install-and-create/](https://docs.tibica.io/getting-started/step-2-install-and-create/)
+### 📚 Resources
+- **Documentation**: [http://docs.tibica.io/](http://docs.tibica.io/)
+- **Getting Started Guide**: [https://docs.tibica.io/getting-started/step-2-install-and-create/](https://docs.tibica.io/getting-started/step-2-install-and-create/)
+
+### 💬 Community & Support
+- **Slack Community**: [Join Tibica Community](https://join.slack.com/t/tibica-community/shared_invite/zt-3djc8oep1-Ghsgkt3bAJJ6A4Kd7M6HPg)
+- **Support Email**: [help@tibica.io](mailto:help@tibica.io)
+- **Official Contact**: [company@tibica.io](mailto:company@tibica.io)
 
 ---
 
