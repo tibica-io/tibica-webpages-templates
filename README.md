@@ -4,7 +4,7 @@ This project contains 24 starter website templates for **Tibica t.Webpages (t.Si
 
 ## 🌐 About Tibica
 
-Tibica is an AWS-powered cloud platform that provides web hosting and content management solutions for developers, digital creators, and businesses. Built by certified Amazon engineers, **Tibica Webpages uses AWS CloudFront** as the hosting solution, offering:
+Tibica is an AWS-powered cloud platform that provides web hosting and content management solutions for developers, digital creators, and businesses. Built by certified Amazon engineers, **Tibica Webpages uses [AWS CloudFront](https://aws.amazon.com/cloudfront/)** as the hosting solution, offering:
 
 - **Git-based version control** with seamless deployment
 - **AWS CloudFront CDN** with 700+ global edge locations
@@ -12,15 +12,11 @@ Tibica is an AWS-powered cloud platform that provides web hosting and content ma
 - **Custom domain support** with enterprise-grade security
 - **Multiple framework support** (React, Vue, Angular, Svelte, and more)
 
-**Pricing Plans:**
-- **Personal**: Free (up to 10 sites, custom domains, SSL)
-- **Business**: $25/month (unlimited sites, SSO, 24/7 support)
-
 Learn more at [https://tibica.io](https://tibica.io)
 
-## ⚡ Why AWS CloudFront for Website Hosting?
+## ⚡ Why [AWS CloudFront](https://aws.amazon.com/cloudfront/) for Website Hosting?
 
-Tibica leverages **AWS CloudFront's global Content Delivery Network (CDN)** to deliver exceptional website performance and reliability:
+Tibica leverages **[AWS CloudFront's](https://aws.amazon.com/cloudfront/) global Content Delivery Network (CDN)** to deliver exceptional website performance and reliability:
 
 ### 🌍 Global Performance
 - **700+ Points of Presence** worldwide ensure ultra-low latency
