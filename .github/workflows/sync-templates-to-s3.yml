@@ -1,0 +1,145 @@
+name: Sync Templates to S3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**'  # Trigger on any file changes
+  workflow_dispatch:  # Allow manual trigger
+
+# Environment variables for the entire workflow
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET_NAME: installator-cloud-git-dev-public-templates
+  AWS_ROLE_ARN: arn:aws:iam::920367284362:role/installator-cloud-git-dev-GithubActionsTemplateBucketWriter
+
+jobs:
+  sync-templates:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout templates repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: GitHubActions-TemplateSync
+
+      - name: Create templates archive for each template
+        run: |
+          # Create a temporary directory for archives
+          mkdir -p archives
+          
+          # List of template directories
+          TEMPLATES=(
+            "angular"
+            "astro-blog" 
+            "astro-portfolio"
+            "eleventy-blog"
+            "email-signature-generator"
+            "html-static"
+            "preact-vite"
+            "preact-vite-ts"
+            "react-cra"
+            "react-cra-ts"
+            "react-docs-advanced"
+            "react-vite"
+            "react-vite-ts"
+            "svelte"
+            "svelte-ts"
+            "svelte-vite"
+            "svelte-vite-ts"
+            "vanilla-vite"
+            "vanilla-vite-ts"
+            "vitepress-docs"
+            "vue"
+            "vue-ts"
+            "vue-vite"
+            "vue-vite-ts"
+          )
+          
+          # Create archives for each template
+          for template in "${TEMPLATES[@]}"; do
+            if [ -d "$template" ]; then
+              echo "Creating archive for $template..."
+              # Create zip archive excluding .git and node_modules
+              cd "$template"
+              zip -r "../archives/${template}.zip" . \
+                -x "*.git*" \
+                -x "*node_modules*" \
+                -x "*.DS_Store*" \
+                -x "*dist/*" \
+                -x "*build/*" \
+                -x "*.next/*" \
+                -x "*coverage/*"
+              cd ..
+              echo "Archive created: archives/${template}.zip"
+            else
+              echo "Warning: Template directory $template not found"
+            fi
+          done
+
+      - name: Upload archives to S3
+        run: |
+          # Upload each archive to S3
+          aws s3 sync archives/ s3://${{ env.S3_BUCKET_NAME }}/templates/ \
+            --delete \
+            --exclude "*" \
+            --include "*.zip"
+          
+          echo "Templates uploaded to S3 bucket: ${{ env.S3_BUCKET_NAME }}"
+
+      - name: Create and upload templates index
+        run: |
+          # Create a JSON index of all available templates
+          cat > templates-index.json << EOF
+          {
+            "lastUpdated": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "commit": "${{ github.sha }}",
+            "templates": [
+          EOF
+          
+          # Add each template to the index
+          first=true
+          for archive in archives/*.zip; do
+            if [ -f "$archive" ]; then
+              filename=$(basename "$archive" .zip)
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "," >> templates-index.json
+              fi
+              cat >> templates-index.json << EOF
+              {
+                "name": "$filename",
+                "downloadUrl": "https://${{ env.S3_BUCKET_NAME }}.s3.amazonaws.com/templates/$filename.zip",
+                "size": $(stat -c%s "$archive" 2>/dev/null || stat -f%z "$archive")
+              }
+          EOF
+            fi
+          done
+          
+          cat >> templates-index.json << EOF
+            ]
+          }
+          EOF
+          
+          # Upload the index file to templates/ prefix to match S3 permissions
+          aws s3 cp templates-index.json s3://${{ env.S3_BUCKET_NAME }}/templates/index.json \
+            --content-type "application/json"
+          
+          echo "Templates index uploaded to S3"
+
+      - name: Summary
+        run: |
+          echo "✅ Template sync completed successfully!"
+          echo "📦 Archives uploaded to: s3://${{ env.S3_BUCKET_NAME }}/templates/"
+          echo "📋 Index file: s3://${{ env.S3_BUCKET_NAME }}/templates/index.json"
+          echo "🔗 Commit: ${{ github.sha }}"
