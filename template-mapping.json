@@ -1,0 +1,27 @@
+{
+  "angular": "angular",
+  "astro-blog": "astroBlog",
+  "astro-portfolio": "astroPortfolio",
+  "eleventy-blog": "eleventy",
+  "email-signature-generator": "signatureGenerator",
+  "html-static": "static",
+  "preact-vite": "preactVite",
+  "preact-vite-ts": "preactVitets",
+  "react-cra": "react",
+  "react-cra-ts": "reactts",
+  "react-docs-advanced": "tibicaDocs",
+  "react-vite": "reactVite",
+  "react-vite-ts": "reactVitets",
+  "svelte": "sveltejs",
+  "svelte-ts": "sveltets",
+  "svelte-vite": "svelteVite",
+  "svelte-vite-ts": "svelteVitets",
+  "vanilla-vite": "vanillaVite",
+  "vanilla-vite-ts": "vanillaVitets",
+  "vitepress-docs": "vitePress",
+  "vue": "vuejs",
+  "vue-ts": "vuets",
+  "vue-vite": "vueVite",
+  "vue-vite-ts": "vueVitets"
+}
+

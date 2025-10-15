@@ -34,13 +34,16 @@ jobs:
 
       - name: Create templates archive for each template
         run: |
+          # Install jq for JSON parsing
+          sudo apt-get update && sudo apt-get install -y jq
+          
           # Create a temporary directory for archives
           mkdir -p archives
-          
+
           # List of template directories
           TEMPLATES=(
             "angular"
-            "astro-blog" 
+            "astro-blog"
             "astro-portfolio"
             "eleventy-blog"
             "email-signature-generator"
@@ -64,14 +67,20 @@ jobs:
             "vue-vite"
             "vue-vite-ts"
           )
-          
+
           # Create archives for each template
           for template in "${TEMPLATES[@]}"; do
             if [ -d "$template" ]; then
-              echo "Creating archive for $template..."
+              # Get mapped name from template-mapping.json
+              mapped_name=$(jq -r --arg key "$template" '.[$key] // empty' template-mapping.json)
+              
+              # Use mapped name if exists, otherwise use original name
+              archive_name=${mapped_name:-$template}
+              
+              echo "Creating archive for $template as $archive_name..."
               # Create zip archive excluding .git and node_modules
               cd "$template"
-              zip -r "../archives/${template}.zip" . \
+              zip -r "../archives/${archive_name}.zip" . \
                 -x "*.git*" \
                 -x "*node_modules*" \
                 -x "*.DS_Store*" \
@@ -80,7 +89,7 @@ jobs:
                 -x "*.next/*" \
                 -x "*coverage/*"
               cd ..
-              echo "Archive created: archives/${template}.zip"
+              echo "Archive created: archives/${archive_name}.zip"
             else
               echo "Warning: Template directory $template not found"
             fi
@@ -93,7 +102,7 @@ jobs:
             --delete \
             --exclude "*" \
             --include "*.zip"
-          
+
           echo "Templates uploaded to S3 bucket: ${{ env.S3_BUCKET_NAME }}"
 
       - name: Create and upload templates index
@@ -105,7 +114,7 @@ jobs:
             "commit": "${{ github.sha }}",
             "templates": [
           EOF
-          
+
           # Add each template to the index
           first=true
           for archive in archives/*.zip; do
@@ -125,16 +134,16 @@ jobs:
           EOF
             fi
           done
-          
+
           cat >> templates-index.json << EOF
             ]
           }
           EOF
-          
+
           # Upload the index file to templates/ prefix to match S3 permissions
           aws s3 cp templates-index.json s3://${{ env.S3_BUCKET_NAME }}/templates/index.json \
             --content-type "application/json"
-          
+
           echo "Templates index uploaded to S3"
 
       - name: Summary
