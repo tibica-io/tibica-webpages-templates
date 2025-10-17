@@ -1,5 +1,5 @@
 version: 1.2
-type: cloud-site
+type: cloud-webpages
 build_config:
   path_to_buildspec: buildspec.yml
 cache:
