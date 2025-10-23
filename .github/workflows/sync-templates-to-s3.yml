@@ -103,6 +103,9 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout templates repository
+        uses: actions/checkout@v4
+
       - name: Download archives
         uses: actions/download-artifact@v4
         with:
@@ -125,6 +128,19 @@ jobs:
             --include "*.zip"
 
           echo "Templates uploaded to S3 DEV bucket: ${{ env.S3_BUCKET_NAME_DEV }}"
+
+      - name: Upload templates-config to S3 DEV
+        run: |
+          # Upload templates-config folder to the root of the bucket
+          if [ -d "templates-config" ]; then
+            aws s3 sync templates-config/ s3://${{ env.S3_BUCKET_NAME_DEV }}/templates-config/ \
+              --delete \
+              --exclude ".DS_Store" \
+              --exclude "*.git*"
+            echo "Templates-config uploaded to S3 DEV bucket: ${{ env.S3_BUCKET_NAME_DEV }}/templates-config/"
+          else
+            echo "Warning: templates-config directory not found"
+          fi
 
       - name: Create and upload templates index for DEV
         run: |
@@ -176,6 +192,9 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout templates repository
+        uses: actions/checkout@v4
+
       - name: Download archives
         uses: actions/download-artifact@v4
         with:
@@ -198,6 +217,19 @@ jobs:
             --include "*.zip"
 
           echo "Templates uploaded to S3 STAGE bucket: ${{ env.S3_BUCKET_NAME_STAGE }}"
+
+      - name: Upload templates-config to S3 STAGE
+        run: |
+          # Upload templates-config folder to the root of the bucket
+          if [ -d "templates-config" ]; then
+            aws s3 sync templates-config/ s3://${{ env.S3_BUCKET_NAME_STAGE }}/templates-config/ \
+              --delete \
+              --exclude ".DS_Store" \
+              --exclude "*.git*"
+            echo "Templates-config uploaded to S3 STAGE bucket: ${{ env.S3_BUCKET_NAME_STAGE }}/templates-config/"
+          else
+            echo "Warning: templates-config directory not found"
+          fi
 
       - name: Create and upload templates index for STAGE
         run: |
@@ -246,6 +278,8 @@ jobs:
           echo "✅ Template sync completed successfully!"
           echo "📦 DEV Archives uploaded to: s3://${{ env.S3_BUCKET_NAME_DEV }}/templates/"
           echo "📦 STAGE Archives uploaded to: s3://${{ env.S3_BUCKET_NAME_STAGE }}/templates/"
+          echo "📂 DEV Templates-config uploaded to: s3://${{ env.S3_BUCKET_NAME_DEV }}/templates-config/"
+          echo "📂 STAGE Templates-config uploaded to: s3://${{ env.S3_BUCKET_NAME_STAGE }}/templates-config/"
           echo "📋 DEV Index file: s3://${{ env.S3_BUCKET_NAME_DEV }}/templates/index.json"
           echo "📋 STAGE Index file: s3://${{ env.S3_BUCKET_NAME_STAGE }}/templates/index.json"
           echo "🔗 Commit: ${{ github.sha }}"
