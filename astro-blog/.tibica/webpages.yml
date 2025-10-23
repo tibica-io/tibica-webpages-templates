@@ -1,7 +1,7 @@
 version: 1.2
 type: cloud-webpages
 build_config:
-  path_to_buildspec: buildspec.yml
+  path_to_buildspec: .tibica/buildspec.yml
 cache:
   - path: "*.png"
     ttl: 31536000
