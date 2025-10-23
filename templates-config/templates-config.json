@@ -1,0 +1,211 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-23",
+  "templates": {
+    "angular": {
+      "id": "angular",
+      "name": "Angular",
+      "description": "TypeScript",
+      "category": "webpack",
+      "version": "19.0.1+",
+      "icon": "angular.svg"
+    },
+    "astro-blog": {
+      "id": "astro-blog",
+      "name": "Astro Blog",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "4.0.0+",
+      "icon": "astro.svg"
+    },
+    "astro-portfolio": {
+      "id": "astro-portfolio",
+      "name": "Astro Portfolio",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "4.0.0+",
+      "icon": "astro.svg"
+    },
+    "eleventy-blog": {
+      "id": "eleventy-blog",
+      "name": "Eleventy Blog",
+      "description": "JavaScript",
+      "category": "webpack",
+      "version": "2.0.0+",
+      "icon": "eleventy.svg"
+    },
+    "email-signature-generator": {
+      "id": "email-signature-generator",
+      "name": "Email Signature Generator",
+      "description": "HTML/JS/CSS",
+      "category": "webpack",
+      "icon": "signature.svg"
+    },
+    "html-static": {
+      "id": "html-static",
+      "name": "HTML Static",
+      "description": "HTML/JS/CSS",
+      "category": "webpack",
+      "icon": "html.svg"
+    },
+    "preact-vite": {
+      "id": "preact-vite",
+      "name": "Preact (Vite)",
+      "description": "JavaScript",
+      "category": "vite",
+      "version": "10.0.0+",
+      "icon": "preact.svg"
+    },
+    "preact-vite-ts": {
+      "id": "preact-vite-ts",
+      "name": "Preact (Vite + TS)",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "10.0.0+",
+      "icon": "preact.svg"
+    },
+    "react-cra": {
+      "id": "react-cra",
+      "name": "React (CRA)",
+      "description": "JavaScript",
+      "category": "webpack",
+      "version": "18.3.1+",
+      "icon": "react.svg"
+    },
+    "react-cra-ts": {
+      "id": "react-cra-ts",
+      "name": "React (CRA + TS)",
+      "description": "TypeScript",
+      "category": "webpack",
+      "version": "18.3.1+",
+      "icon": "reactts.svg"
+    },
+    "react-docs-advanced": {
+      "id": "react-docs-advanced",
+      "name": "React Docs Advanced",
+      "description": "React + TypeScript + Vite",
+      "category": "vite",
+      "version": "18.3.1+",
+      "icon": "tibica.svg"
+    },
+    "react-vite": {
+      "id": "react-vite",
+      "name": "React (Vite)",
+      "description": "JavaScript",
+      "category": "vite",
+      "version": "18.3.1+",
+      "icon": "react.svg"
+    },
+    "react-vite-ts": {
+      "id": "react-vite-ts",
+      "name": "React (Vite + TS)",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "18.3.1+",
+      "icon": "reactts.svg"
+    },
+    "svelte": {
+      "id": "svelte",
+      "name": "Svelte",
+      "description": "JavaScript",
+      "category": "webpack",
+      "version": "4.0.0+",
+      "icon": "svelte.svg"
+    },
+    "svelte-ts": {
+      "id": "svelte-ts",
+      "name": "Svelte (TS)",
+      "description": "TypeScript",
+      "category": "webpack",
+      "version": "4.0.0+",
+      "icon": "svelte.svg"
+    },
+    "svelte-vite": {
+      "id": "svelte-vite",
+      "name": "Svelte (Vite)",
+      "description": "JavaScript",
+      "category": "vite",
+      "version": "4.0.0+",
+      "icon": "svelte.svg"
+    },
+    "svelte-vite-ts": {
+      "id": "svelte-vite-ts",
+      "name": "Svelte (Vite + TS)",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "4.0.0+",
+      "icon": "svelte.svg"
+    },
+    "vanilla-vite": {
+      "id": "vanilla-vite",
+      "name": "Vanilla (Vite)",
+      "description": "JavaScript",
+      "category": "vite",
+      "icon": "js.svg"
+    },
+    "vanilla-vite-ts": {
+      "id": "vanilla-vite-ts",
+      "name": "Vanilla (Vite + TS)",
+      "description": "TypeScript",
+      "category": "vite",
+      "icon": "ts.svg"
+    },
+    "vitepress-docs": {
+      "id": "vitepress-docs",
+      "name": "VitePress Docs",
+      "description": "Vue + TypeScript",
+      "category": "vite",
+      "version": "1.0.0+",
+      "icon": "vitepress.svg"
+    },
+    "vue": {
+      "id": "vue",
+      "name": "Vue",
+      "description": "JavaScript",
+      "category": "webpack",
+      "version": "3.0.0+",
+      "icon": "vue.svg"
+    },
+    "vue-ts": {
+      "id": "vue-ts",
+      "name": "Vue (TS)",
+      "description": "TypeScript",
+      "category": "webpack",
+      "version": "3.0.0+",
+      "icon": "vue.svg"
+    },
+    "vue-vite": {
+      "id": "vue-vite",
+      "name": "Vue (Vite)",
+      "description": "JavaScript",
+      "category": "vite",
+      "version": "3.0.0+",
+      "icon": "vue.svg"
+    },
+    "vue-vite-ts": {
+      "id": "vue-vite-ts",
+      "name": "Vue (Vite + TS)",
+      "description": "TypeScript",
+      "category": "vite",
+      "version": "3.0.0+",
+      "icon": "vue.svg"
+    }
+  },
+  "categories": {
+    "webpack": {
+      "name": "Webpack Templates",
+      "description": "Traditional build system templates",
+      "order": 1
+    },
+    "vite": {
+      "name": "Vite Templates",
+      "description": "Modern fast build system templates",
+      "order": 2
+    },
+    "docs": {
+      "name": "Documentation Templates",
+      "description": "Documentation and static site generators",
+      "order": 3
+    }
+  }
+}
