@@ -33,47 +33,25 @@ jobs:
           # Create a temporary directory for archives
           mkdir -p archives
 
-          # List of template directories
-          TEMPLATES=(
-            "angular"
-            "astro-blog"
-            "astro-portfolio"
-            "eleventy-blog"
-            "email-signature-generator"
-            "html-static"
-            "preact-vite"
-            "preact-vite-ts"
-            "react-cra"
-            "react-cra-ts"
-            "react-docs-advanced"
-            "react-vite"
-            "react-vite-ts"
-            "svelte"
-            "svelte-ts"
-            "svelte-vite"
-            "svelte-vite-ts"
-            "vanilla-vite"
-            "vanilla-vite-ts"
-            "vitepress-docs"
-            "vue"
-            "vue-ts"
-            "vue-vite"
-            "vue-vite-ts"
-          )
+          # Read template list from templates-config.json
+          if [ ! -f "templates-config/templates-config.json" ]; then
+            echo "Error: templates-config/templates-config.json not found"
+            exit 1
+          fi
 
-          # Create archives for each template
+          # Extract template IDs from the JSON file
+          TEMPLATES=($(jq -r '.templates | keys[]' templates-config/templates-config.json))
+          
+          echo "Found ${#TEMPLATES[@]} templates in config file:"
+          printf ' - %s\n' "${TEMPLATES[@]}"
+
+          # Create archives for each template using original names
           for template in "${TEMPLATES[@]}"; do
             if [ -d "$template" ]; then
-              # Get mapped name from template-mapping.json
-              mapped_name=$(jq -r --arg key "$template" '.[$key] // empty' template-mapping.json)
-              
-              # Use mapped name if exists, otherwise use original name
-              archive_name=${mapped_name:-$template}
-              
-              echo "Creating archive for $template as $archive_name..."
+              echo "Creating archive for $template..."
               # Create zip archive excluding .git and node_modules
               cd "$template"
-              zip -r "../archives/${archive_name}.zip" . \
+              zip -r "../archives/${template}.zip" . \
                 -x "*.git*" \
                 -x "*node_modules*" \
                 -x "*.DS_Store*" \
@@ -82,7 +60,7 @@ jobs:
                 -x "*.next/*" \
                 -x "*coverage/*"
               cd ..
-              echo "Archive created: archives/${archive_name}.zip"
+              echo "Archive created: archives/${template}.zip"
             else
               echo "Warning: Template directory $template not found"
             fi
