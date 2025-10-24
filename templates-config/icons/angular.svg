@@ -1,1 +1,8 @@
-<svg height="1em" viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m8 0-7.5 2.59 1.13 9.58 6.37 3.4 6.37-3.4 1.13-9.58z" fill="#dd0031"/><path d="m8 0v1.73-.02 13.86l6.37-3.4 1.13-9.58z" fill="#c3002f"/><path d="m8 1.71-4.7 10.16h1.76l.94-2.27h4l.92 2.27h1.76zm1.37 6.5h-2.74l1.37-3.19 1.37 3.2z" fill="#fff"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 16 16" width="1em" role="img" aria-labelledby="angular-icon-title">
+  <title id="angular-icon-title">Angular</title>
+  <path d="m8 0-7.5 2.59 1.13 9.58 6.37 3.4 6.37-3.4 1.13-9.58z" fill="#dd0031"/>
+  <path d="m8 0v1.73-.02 13.86l6.37-3.4 1.13-9.58z" fill="#c3002f"/>
+  <path d="m8 1.71-4.7 10.16h1.76l.94-2.27h4l.92 2.27h1.76zm1.37 6.5h-2.74l1.37-3.19 1.37 3.2z" fill="#fff"/>
+</svg>
+
