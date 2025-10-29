@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const sveltePreprocess = require('svelte-preprocess');
 
@@ -56,6 +57,11 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: 'public', to: '', noErrorOnMissing: true }
+			]
 		})
 	],
 	devtool: prod ? false : 'source-map',
