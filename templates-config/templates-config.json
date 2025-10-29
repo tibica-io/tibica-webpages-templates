@@ -117,7 +117,7 @@
       "name": "Svelte (TS)",
       "description": "TypeScript",
       "category": "webpack",
-      "version": "4.0.0+",
+      "version": "4.2.0+",
       "icon": "svelte.svg"
     },
     "svelte-vite": {
@@ -125,7 +125,7 @@
       "name": "Svelte (Vite)",
       "description": "JavaScript",
       "category": "vite",
-      "version": "4.0.0+",
+      "version": "5.0.0+",
       "icon": "svelte.svg"
     },
     "svelte-vite-ts": {
@@ -133,7 +133,7 @@
       "name": "Svelte (Vite + TS)",
       "description": "TypeScript",
       "category": "vite",
-      "version": "4.0.0+",
+      "version": "5.0.0+",
       "icon": "svelte.svg"
     },
     "vanilla-vite": {
