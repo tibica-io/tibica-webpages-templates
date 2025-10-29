@@ -85,7 +85,7 @@ function Sidebar() {
                                 }
                                 {/*{installedApps.map((app) => {*/}
                                 {/*    const currentApp = app.application_alias.toLowerCase();*/}
-                                {/*    const isNavActive = currentApp === 't.site';*/}
+                                {/*    const isNavActive = currentApp === 't.webpages';*/}
                                 {/*    const appLink = currentApp === 't.home' ? window.location.origin : `${window.location.origin}/${currentApp}/`;*/}
                       
                                 {/*    return (*/}

@@ -1,7 +1,7 @@
-# Building your Documentation with t.Site Documentation Template
+# Building your Documentation with t.Webpages Documentation Template
 
 ## Introduction
-The t.Site documentation template provides a simple way to edit and publish your documentation. This guide will walk you through the process of creating and managing your documentation using the t.Site app.
+The t.Webpages documentation template provides a simple way to edit and publish your documentation. This guide will walk you through the process of creating and managing your documentation using the t.Webpages app.
 
 [![Tibica](https://i.postimg.cc/FHbHtJqb/Group-182.png)](https://postimg.cc/sMXr7131)
 
@@ -33,6 +33,6 @@ Each object in `mdConfig.json` represents a documentation page and includes the 
 * `lastDateUpdated`: The date when the `.md` file was last updated, displayed on the page.
 
 ### Deploying your documentation website
-After uploading your `.md` files and modifying the `mdConfig.json` file, deploy your website as you normally would. The t.Site app will automatically generate the documentation HTML pages based on the `mdConfig.json` file.
+After uploading your `.md` files and modifying the `mdConfig.json` file, deploy your website as you normally would. The t.Webpages app will automatically generate the documentation HTML pages based on the `mdConfig.json` file.
 
 Voilà! Your documentation is now live on the web.

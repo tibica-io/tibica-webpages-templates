@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project contains 24 starter website templates for **Tibica t.Webpages (t.Site)** - a comprehensive collection of modern web development templates covering various frameworks, build tools, and use cases.
+This project contains 24 starter website templates for **Tibica t.Webpages** - a comprehensive collection of modern web development templates covering various frameworks, build tools, and use cases.
 
 ## 🌐 About Tibica
 
@@ -47,14 +47,14 @@ Tibica leverages **[AWS CloudFront's](https://aws.amazon.com/cloudfront/) global
 
 ## 📚 Getting Started
 
-To use these templates with Tibica t.Site, follow the complete setup guide at [https://docs.tibica.io/getting-started/step-2-install-and-create/](https://docs.tibica.io/getting-started/step-2-install-and-create/)
+To use these templates with Tibica t.Webpages, follow the complete setup guide at [https://docs.tibica.io/getting-started/step-2-install-and-create/](https://docs.tibica.io/getting-started/step-2-install-and-create/)
 
 ### How to Use Templates
 
 1. Log into your Tibica Workspace
 2. Go to the Market tab
-3. Install the t.Site application
-4. Open t.Site app
+3. Install the t.Webpages application
+4. Open t.Webpages app
 5. Click "NEW SITE"
 6. Choose from 24 available templates
 7. Name your website

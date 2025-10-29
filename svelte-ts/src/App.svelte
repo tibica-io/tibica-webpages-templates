@@ -21,7 +21,7 @@
 						Svelte + Typescript
 					</header>
 					<p class='description'>
-						{"Congrats! You've reached the first page of your website. To customize anything on this site, simply go ahead and make changes to your files via t.Site."}
+						{"Congrats! You've reached the first page of your website. To customize anything on this site, simply go ahead and make changes to your files via t.Webpages."}
 					</p>
 				</div>
 			</div>  
