@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-10-23",
+  "lastUpdated": "2025-01-27",
   "templates": {
     "angular": {
       "id": "angular",
@@ -109,7 +109,7 @@
       "name": "Svelte",
       "description": "JavaScript",
       "category": "webpack",
-      "version": "4.0.0+",
+      "version": "4.2.0+",
       "icon": "svelte.svg"
     },
     "svelte-ts": {
