@@ -33,6 +33,7 @@ jobs:
         id: update
         run: |
           set -u
+          set +e          # GitHub Actions defaults to -e; override so individual build failures don't kill the script
 
           BRANCH="chore/update-templates-$(date +%Y-%m-%d)"
           git checkout -b "$BRANCH"
