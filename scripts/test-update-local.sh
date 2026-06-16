@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Use Node 22 if available via nvm (ncu@latest requires Node 20+)
-NODE22=$(ls "$HOME/.nvm/versions/node/" 2>/dev/null | grep '^v22\.' | sort -V | tail -1)
-if [ -n "$NODE22" ]; then
-  export PATH="$HOME/.nvm/versions/node/$NODE22/bin:$PATH"
+if [ -d "$HOME/.nvm/versions/node/v22.17.0/bin" ]; then
+  export PATH="$HOME/.nvm/versions/node/v22.17.0/bin:$PATH"
 fi
 # Local test script — mirrors the GitHub Actions workflow logic.
 # Does NOT modify package.json or push anything by default.
@@ -21,10 +20,7 @@ fi
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-# Permanently skipped: EOL tools that are fundamentally incompatible with Node 22
-# react-cra / react-cra-ts use react-scripts 5 (CRA), which has unresolvable
-# webpack/ajv dependency conflicts on Node 22. Requires Vite migration.
-EOL_SKIP="react-cra react-cra-ts"
+SKIP="email-signature-generator html-static templates-config"
 
 PASS=0
 FAIL=0
@@ -49,13 +45,6 @@ for dir in $(ls -d */ | sort); do
   esac
 
   [ ! -f "$TEMPLATE/package.json" ] && continue
-
-  # Skip EOL templates (CRA / react-scripts — incompatible with Node 22, needs Vite migration)
-  if echo "$EOL_SKIP" | grep -qw "$TEMPLATE"; then
-    printf "%-30s %-20s %-15s\n" "$TEMPLATE" "⏭️  EOL/skipped" "⏭️  Skipped"
-    ((SKIP_COUNT++))
-    continue
-  fi
 
   pushd "$TEMPLATE" > /dev/null
 
