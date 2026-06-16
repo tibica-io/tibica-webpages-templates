@@ -1,0 +1,161 @@
+name: Update Template Dependencies
+
+on:
+  schedule:
+    - cron: '0 8 1 * *' # First day of every month at 8 AM UTC
+  workflow_dispatch:    # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update dependencies and test builds
+        id: update
+        run: |
+          set -u
+
+          BRANCH="chore/update-templates-$(date +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+
+          RESULTS_FILE=$(mktemp)
+          echo "| Template | Updated | Build |" >> "$RESULTS_FILE"
+          echo "|----------|---------|-------|" >> "$RESULTS_FILE"
+
+          HAS_CHANGES=false
+          HAS_FAILURES=false
+
+          for TEMPLATE in $(find . -maxdepth 1 -mindepth 1 -type d -printf '%f\n' | sort); do
+            # Skip non-template directories
+            case "$TEMPLATE" in
+              .git|templates-config|email-signature-generator|html-static) continue ;;
+            esac
+
+            [ ! -f "$TEMPLATE/package.json" ] && continue
+
+            echo "::group::$TEMPLATE"
+            pushd "$TEMPLATE" > /dev/null
+
+            # Bump all deps to latest
+            ORIG=$(cat package.json)
+            npx --yes npm-check-updates@latest -u
+
+            if [ "$(cat package.json)" != "$ORIG" ]; then
+              UPDATED="✅ Yes"
+              HAS_CHANGES=true
+            else
+              UPDATED="➖ No change"
+            fi
+
+            # Install updated deps
+            npm install --legacy-peer-deps --no-fund --no-audit 2>&1 || true
+
+            # Detect build script (handles vitepress-docs which uses docs:build)
+            BUILD_KEY=$(jq -r 'if .scripts.build then "build" elif .scripts["docs:build"] then "docs:build" else "" end' package.json)
+
+            if [ -n "$BUILD_KEY" ]; then
+              # CRA templates: disable CI=true to avoid treating warnings as errors
+              if [[ "$TEMPLATE" == react-cra* ]]; then
+                CI=false npm run "$BUILD_KEY" 2>&1
+              else
+                npm run "$BUILD_KEY" 2>&1
+              fi
+              BUILD_EXIT=$?
+
+              if [ $BUILD_EXIT -eq 0 ]; then
+                BUILD="✅ Pass"
+              else
+                BUILD="❌ Fail"
+                HAS_FAILURES=true
+              fi
+            else
+              BUILD="⏭️ Skip"
+            fi
+
+            popd > /dev/null
+            echo "::endgroup::"
+
+            echo "| \`$TEMPLATE\` | $UPDATED | $BUILD |" >> "$RESULTS_FILE"
+          done
+
+          # Stage only files already tracked in git (package.json, package-lock.json)
+          git add -u
+
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "All templates are already up to date — no PR needed."
+            exit 0
+          fi
+
+          git commit -m "chore: update template dependencies $(date +%Y-%m-%d)"
+          git push origin "$BRANCH"
+
+          echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          echo "branch_name=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "has_failures=$HAS_FAILURES" >> "$GITHUB_OUTPUT"
+
+          {
+            echo "results<<RESULTS_EOF"
+            cat "$RESULTS_FILE"
+            echo "RESULTS_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        if: steps.update.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${{ steps.update.outputs.branch_name }}"
+          HAS_FAILURES="${{ steps.update.outputs.has_failures }}"
+
+          if [ "$HAS_FAILURES" = "true" ]; then
+            TITLE="chore: update template dependencies ⚠️ $(date +%Y-%m-%d)"
+            STATUS_NOTE="> ⚠️ **Some templates failed to build.** Review the failures below before merging."
+          else
+            TITLE="chore: update template dependencies ✅ $(date +%Y-%m-%d)"
+            STATUS_NOTE="> ✅ All templates built successfully."
+          fi
+
+          BODY_FILE=$(mktemp)
+          cat > "$BODY_FILE" << EOF
+          ## Automated Dependency Update
+
+          ${STATUS_NOTE}
+
+          This PR was created automatically by the weekly \`update-templates\` workflow.
+          All template dependencies have been bumped to their latest versions using [\`npm-check-updates\`](https://www.npmjs.com/package/npm-check-updates).
+
+          ## Build Results
+
+          ${{ steps.update.outputs.results }}
+
+          ## Review Checklist
+          - [ ] All builds pass (or failures are investigated)
+          - [ ] No unexpected major version breaking changes
+          - [ ] Spot-check a failed template locally if needed
+          EOF
+
+          gh pr create \
+            --title "$TITLE" \
+            --base main \
+            --head "$BRANCH" \
+            --body-file "$BODY_FILE"
