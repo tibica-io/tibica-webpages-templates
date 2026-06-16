@@ -1,0 +1,10 @@
+{
+  "reject": [
+    "eslint",
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser",
+    "@vue/eslint-config-typescript",
+    "eslint-plugin-vue",
+    "typescript"
+  ]
+}

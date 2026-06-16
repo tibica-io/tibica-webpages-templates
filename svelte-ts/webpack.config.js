@@ -11,11 +11,7 @@ module.exports = {
 		'build/bundle': ['./src/main.ts']
 	},
 	resolve: {
-		alias: {
-			svelte: path.resolve('node_modules', 'svelte/src/runtime')
-		},
 		extensions: ['.mjs', '.js', '.ts', '.svelte'],
-		mainFields: ['svelte', 'browser', 'module', 'main'],
 		conditionNames: ['svelte', 'browser']
 	},
 	output: {
