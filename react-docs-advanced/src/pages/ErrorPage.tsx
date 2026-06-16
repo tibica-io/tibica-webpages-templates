@@ -1,7 +1,7 @@
 import s from "./ErrorPage.module.scss"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@perfsys-io/uikit"
-import { ReactComponent as NotFoundIcon } from "../assets/images/not-found.svg"
+import NotFoundIcon from "../assets/images/not-found.svg?react"
 import { ReactNode } from "react"
 
 interface IErrorPageProps{
@@ -33,7 +33,7 @@ export default function ErrorPage({errorMessage, errorTitle}:IErrorPageProps) {
                         <span>It seems like the page that you are looking for doesn’t exist. Or there is some error in the URL.</span>
                 }
             </p>
-            <Button onClick={() => navigate("/")}>GO TO THE MAIN PAGE</Button>
+            <Button onClick={() => { void navigate("/") }}>GO TO THE MAIN PAGE</Button>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import CopyButton from "./CopyButton"
 import s from "./CustomMarkdownPre.module.scss"
 
 interface ICustomMarkdownPreProps{
-    children: ReactNode & ReactNode[]
+    children: ReactNode
 }
 
 export default function CustomMarkdownPre({children}:ICustomMarkdownPreProps){

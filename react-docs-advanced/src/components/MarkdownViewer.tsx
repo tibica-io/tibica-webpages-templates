@@ -1,3 +1,4 @@
+import React from "react"
 import ReactMarkdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import remarkGfm from "remark-gfm"
@@ -35,58 +36,65 @@ export default function MarkdownViewer({ currentTopic, handleStringsArray }:IMar
         )
     }
 
+    const extractText = (children: React.ReactNode): string => {
+        if (typeof children === 'string') return children
+        if (Array.isArray(children)) return children.map(extractText).join('')
+        return ''
+    }
+
     return (
         <>
             {
                 currentTopic.markdownContent && !currentTopic.error &&
-                    <ReactMarkdown
-                        className="markdown-body"
-                        rehypePlugins = {[rehypeRaw, rehypeHighlight]}
-                        remarkPlugins = {[remarkGfm]}
-                
-                        components={{
-                            h1({children,  ...props}){
-                                const tagName = String(...children)
-                                handleStringsArray(tagName)
-                
-                                const strWithoutSpaces = tagName.replace(/ /g, "-")
-                
-                                return (
-                                    <>
-                                        <h1 id={`${strWithoutSpaces}`} {...props}>
+                    <div className="markdown-body">
+                        <ReactMarkdown
+                            rehypePlugins = {[rehypeRaw, rehypeHighlight]}
+                            remarkPlugins = {[remarkGfm]}
+
+                            components={{
+                                h1({children, ...props}){
+                                    const tagName = extractText(children)
+                                    handleStringsArray(tagName)
+
+                                    const strWithoutSpaces = tagName.replace(/ /g, "-")
+
+                                    return (
+                                        <>
+                                            <h1 id={`${strWithoutSpaces}`} {...props}>
+                                                {children}
+                                            </h1>
+
+                                            {
+                                                currentTopic.lastDateUpdated &&
+                                                        <Text type="secondary" className={s["last-date-updated"]}>
+                                                            Last modified: { dateFns.format(currentTopic.lastDateUpdated, "d MMMM yyyy") }
+                                                        </Text>
+                                            }
+                                        </>
+                                    )
+                                },
+                                h2({children, ...props}){
+                                    const tagName = extractText(children)
+                                    handleStringsArray(tagName)
+
+                                    const strWithoutSpaces = tagName.replace(/ /g, "-")
+                                    return (
+                                        <h2 id={`${strWithoutSpaces}`} {...props}>
                                             {children}
-                                        </h1>
-                
-                                        {
-                                            currentTopic.lastDateUpdated && 
-                                                    <Text type="secondary" className={s["last-date-updated"]}>
-                                                        Last modified: { dateFns.format(currentTopic.lastDateUpdated, "d MMMM yyyy") }
-                                                    </Text>
-                                        }
-                                    </>
-                                )
-                            },
-                            h2({children, ...props}){
-                                const tagName = String(...children)
-                                handleStringsArray(tagName)
-                
-                                const strWithoutSpaces = tagName.replace(/ /g, "-")
-                                return (
-                                    <h2 id={`${strWithoutSpaces}`} {...props}>
-                                        {children}
-                                    </h2>
-                                )
-                            },
-                            pre({children}){
-                                return (
-                                    <CustomMarkdownPre children={children}/>
-                                )
-                            }
-                        }}
-                    >
-                        {currentTopic.markdownContent}
-                    </ReactMarkdown>
-            }   
+                                        </h2>
+                                    )
+                                },
+                                pre({children}){
+                                    return (
+                                        <CustomMarkdownPre>{children}</CustomMarkdownPre>
+                                    )
+                                }
+                            }}
+                        >
+                            {currentTopic.markdownContent}
+                        </ReactMarkdown>
+                    </div>
+            }
         </>
     )
 }

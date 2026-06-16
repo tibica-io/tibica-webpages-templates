@@ -1,19 +1,15 @@
-const { DateTime } = require("luxon");
-const fs = require("fs");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginNavigation = require("@11ty/eleventy-navigation");
-const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
+import { DateTime } from "luxon";
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import pluginNavigation from "@11ty/eleventy-navigation";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
 
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
-
-  // https://www.11ty.dev/docs/data-deep-merge/
-  eleventyConfig.setDataDeepMerge(true);
 
   // Alias `layout: post` to `layout: layouts/post.njk`
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
@@ -73,24 +69,6 @@ module.exports = function(eleventyConfig) {
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 
-  // Override Browsersync defaults (used only with --serve)
-  eleventyConfig.setBrowserSyncConfig({
-    callbacks: {
-      ready: function(err, browserSync) {
-        const content_404 = fs.readFileSync('_site/404.html');
-
-        browserSync.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
-          res.writeHead(404, {"Content-Type": "text/html; charset=UTF-8"});
-          res.write(content_404);
-          res.end();
-        });
-      },
-    },
-    ui: false,
-    ghostMode: false
-  });
-
   return {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
@@ -103,9 +81,9 @@ module.exports = function(eleventyConfig) {
 
     // -----------------------------------------------------------------
     // If your site deploys to a subdirectory, change `pathPrefix`.
-    // Don’t worry about leading and trailing slashes, we normalize these.
+    // Don't worry about leading and trailing slashes, we normalize these.
 
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
+    // If you don't have a subdirectory, use "" or "/" (they do the same thing)
     // This is only used for link URLs (it does not affect your file structure)
     // Best paired with the `url` filter: https://www.11ty.dev/docs/filters/url/
 
@@ -132,4 +110,4 @@ module.exports = function(eleventyConfig) {
       output: "_site"
     }
   };
-};
+}
