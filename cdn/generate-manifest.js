@@ -25,6 +25,15 @@ function scanDir(dirPath, relativePath) {
 
 const publicEntries = fs.readdirSync(PUBLIC, { withFileTypes: true })
 
+const rootFiles = publicEntries
+  .filter(e => e.isFile() && !e.name.startsWith('.'))
+  .map(e => e.name)
+  .sort()
+
+if (rootFiles.length > 0) {
+  manifest[''] = rootFiles
+}
+
 for (const entry of publicEntries) {
   if (!entry.isDirectory()) continue
   if (IGNORE.has(entry.name) || entry.name.startsWith('.')) continue
