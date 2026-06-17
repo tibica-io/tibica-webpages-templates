@@ -48,14 +48,18 @@
       }, 1500)
     }
 
+    function assetPath(folder, file) {
+      return folder ? `./public/${folder}/${file}` : `./public/${file}`
+    }
+
     function copyUrl(folder, file) {
-      const url = new URL(`./public/${folder}/${file}`, window.location.href).href
+      const url = new URL(assetPath(folder, file), window.location.href).href
       navigator.clipboard.writeText(url).then(() => showToast('URL copied!'))
     }
 
     function downloadFile(folder, file) {
       const a = document.createElement('a')
-      a.href = `./public/${folder}/${file}`
+      a.href = assetPath(folder, file)
       a.download = file
       document.body.appendChild(a)
       a.click()
@@ -83,7 +87,7 @@
         return `
           <div class="flex flex-col items-center gap-2 group">
             <div class="w-[80px] h-[80px] md:w-[200px] md:h-[200px] relative flex items-center justify-center bg-white rounded-xl shadow-sm border border-gray-100 p-1 md:p-4">
-              <img src="./public/${folder}/${file}" alt="${file}" class="max-w-full max-h-full object-contain" />
+              <img src="${assetPath(folder, file)}" alt="${file}" class="max-w-full max-h-full object-contain" />
               ${overlay(folder, file)}
             </div>
             <span class="text-xs text-gray-400 truncate w-[80px] md:w-[200px] text-center" title="${file}">${file}</span>
@@ -108,11 +112,13 @@
 
       for (const [folder, files] of Object.entries(manifest)) {
         const section = document.createElement('section')
-        const breadcrumb = folder.split('/').map((part, i, arr) =>
-          i < arr.length - 1
-            ? `<span class="text-gray-400">${part}</span><span class="text-gray-300 mx-1">/</span>`
-            : `<span class="text-gray-700">${part}</span>`
-        ).join('')
+        const breadcrumb = folder
+          ? folder.split('/').map((part, i, arr) =>
+              i < arr.length - 1
+                ? `<span class="text-gray-400">${part}</span><span class="text-gray-300 mx-1">/</span>`
+                : `<span class="text-gray-700">${part}</span>`
+            ).join('')
+          : `<span class="text-gray-700">public</span>`
         section.innerHTML = `
           <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">${breadcrumb}</h2>
           <div class="grid gap-3 md:gap-4 grid-cols-[repeat(auto-fill,minmax(80px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
