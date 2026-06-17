@@ -41,6 +41,13 @@
       "category": "webpack",
       "icon": "signature.svg"
     },
+    "cdn": {
+      "id": "cdn",
+      "name": "CDN",
+      "description": "Static file hosting viewer",
+      "category": "static",
+      "icon": "cdn.svg"
+    },
     "html-static": {
       "id": "html-static",
       "name": "HTML Static",
@@ -192,6 +199,11 @@
     }
   },
   "categories": {
+    "static": {
+      "name": "Static Templates",
+      "description": "Plain HTML/CSS static site templates",
+      "order": 0
+    },
     "webpack": {
       "name": "Webpack Templates",
       "description": "Traditional build system templates",

@@ -4,6 +4,7 @@
   "astro-portfolio": "astroPortfolio",
   "eleventy-blog": "eleventy",
   "email-signature-generator": "signatureGenerator",
+  "cdn": "cdn",
   "html-static": "static",
   "preact-vite": "preactVite",
   "preact-vite-ts": "preactVitets",
