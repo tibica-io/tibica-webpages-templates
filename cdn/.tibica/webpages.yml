@@ -1,0 +1,16 @@
+version: '1.2'
+type: cloud-webpages
+build_config:
+  path_to_buildspec: .tibica/buildspec.yml
+cache:
+  - path: /icons/*
+    ttl: 31536000
+  - path: /avatars/*
+    ttl: 31536000
+error_pages:
+  - error_code: 404
+    response_page_path: /404.html
+    response_code: 404
+deleted_urls: []
+redirect_to_lowercase: true
+application: null

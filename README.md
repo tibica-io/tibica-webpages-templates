@@ -104,6 +104,7 @@ Your selected template will automatically generate a repository in t.Git with al
 - **`vanilla-vite-ts/`** - Vanilla JavaScript with TypeScript and Vite
 - **`html-static/`** - Pure HTML/CSS template for simple static websites
 - **`email-signature-generator/`** - Interactive HTML/CSS/JS template for email signature generation
+- **`cdn/`** - Static CDN asset viewer for hosting and browsing files on AWS CloudFront
 
 ### Documentation Templates
 
