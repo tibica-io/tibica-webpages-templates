@@ -101,8 +101,18 @@ jobs:
             echo "| \`$TEMPLATE\` | $UPDATED | $BUILD |" >> "$RESULTS_FILE"
           done
 
-          # Stage only files already tracked in git (package.json, package-lock.json)
+          # Always write BUILD_STATUS.md with latest results
+          {
+            echo "# Template Build Status"
+            echo ""
+            echo "> Last checked: $(date +%Y-%m-%d) — workflow run [#$GITHUB_RUN_NUMBER](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+            echo ""
+            cat "$RESULTS_FILE"
+          } > BUILD_STATUS.md
+
+          # Stage package.json/lock changes + BUILD_STATUS.md
           git add -u
+          git add BUILD_STATUS.md
 
           if git diff --staged --quiet; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
