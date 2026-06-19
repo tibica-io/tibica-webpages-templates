@@ -5,6 +5,8 @@
     "@typescript-eslint/parser",
     "@vue/eslint-config-typescript",
     "eslint-plugin-vue",
-    "typescript"
+    "typescript",
+    "@babel/core",
+    "@babel/eslint-parser"
   ]
 }
