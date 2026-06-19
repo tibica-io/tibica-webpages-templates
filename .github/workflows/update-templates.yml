@@ -127,6 +127,7 @@ jobs:
         if: steps.update.outputs.has_changes == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESULTS: ${{ steps.update.outputs.results }}
         run: |
           BRANCH="${{ steps.update.outputs.branch_name }}"
           HAS_FAILURES="${{ steps.update.outputs.has_failures }}"
@@ -140,7 +141,8 @@ jobs:
           fi
 
           BODY_FILE=$(mktemp)
-          cat > "$BODY_FILE" << EOF
+          {
+            cat <<EOF
           ## Automated Dependency Update
 
           ${STATUS_NOTE}
@@ -150,16 +152,28 @@ jobs:
 
           ## Build Results
 
-          ${{ steps.update.outputs.results }}
-
+          EOF
+            printf '%s\n\n' "$RESULTS"
+            cat <<'EOF'
           ## Review Checklist
           - [ ] All builds pass (or failures are investigated)
           - [ ] No unexpected major version breaking changes
           - [ ] Spot-check a failed template locally if needed
           EOF
+          } > "$BODY_FILE"
 
-          gh pr create \
+          PR_ERROR_FILE=$(mktemp)
+          if ! gh pr create \
             --title "$TITLE" \
             --base main \
             --head "$BRANCH" \
-            --body-file "$BODY_FILE"
+            --body-file "$BODY_FILE" 2>"$PR_ERROR_FILE"; then
+            if grep -q "GitHub Actions is not permitted to create or approve pull requests" "$PR_ERROR_FILE"; then
+              cat "$PR_ERROR_FILE"
+              echo "::warning::Branch '$BRANCH' was pushed, but this repository does not currently allow GitHub Actions to create pull requests with GITHUB_TOKEN."
+              echo "::warning::Enable 'Allow GitHub Actions to create and approve pull requests' in repository settings or create the PR manually."
+            else
+              cat "$PR_ERROR_FILE" >&2
+              exit 1
+            fi
+          fi
