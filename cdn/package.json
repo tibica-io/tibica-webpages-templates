@@ -13,8 +13,8 @@
     "test": "npm run build && node ./test.js"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.0.0",
-    "eslint": "^10.5.0",
-    "tailwindcss": "^4.0.0"
+    "@tailwindcss/cli": "^4.3.3",
+    "eslint": "^10.9.1",
+    "tailwindcss": "^4.3.3"
   }
 }
